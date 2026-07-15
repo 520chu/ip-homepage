@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>30万年终奖 · 智选组合方案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background: #f5f7fa;
+            padding: 24px 16px 60px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* 头部 */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 20px;
+            padding: 32px 28px 28px;
+            color: #fff;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: "💰";
+            position: absolute;
+            right: 20px;
+            bottom: -10px;
+            font-size: 80px;
+            opacity: 0.12;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .header .sub {
+            font-size: 15px;
+            color: #94a3b8;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .header .tagline {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header .tagline span {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title .emoji {
+            font-size: 20px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        /* 资金分配 */
+        .allocation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0 4px;
+        }
+
+        .allocation-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px 14px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .allocation-item.orange {
+            border-left-color: #f59e0b;
+        }
+
+        .allocation-item .label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .allocation-item .amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 2px 0;
+        }
+
+        .allocation-item .amount span {
+            font-size: 15px;
+            font-weight: 400;
+            color: #94a3b8;
+        }
+
+        .allocation-item .note {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* 产品详情 */
+        .product {
+            border-top: 1px solid #f1f5f9;
+            padding-top: 16px;
+            margin-top: 14px;
+        }
+
+        .product:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .product-name .tag {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: 12px;
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .product-name .tag.orange-tag {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .product-name .tag.green-tag {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            font-size: 13px;
+            color: #475569;
+            margin: 6px 0 8px;
+        }
+
+        .product-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        .product-desc strong {
+            color: #0f172a;
+        }
+
+        .highlight-box {
+            background: #f0f9ff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #0c4a6e;
+            border: 1px solid #bae6fd;
+        }
+
+        .highlight-box .label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* 备选方案 */
+        .alt-box {
+            background: #fffbeb;
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid #fde68a;
+            margin-top: 14px;
+        }
+
+        .alt-box .title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #92400e;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .alt-box .content {
+            font-size: 14px;
+            color: #78350f;
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        .alt-box .content .code {
+            background: #fef3c7;
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        /* 风险提示 */
+        .risk {
+            background: #fef2f2;
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid #fecaca;
+            font-size: 13px;
+            color: #991b1b;
+            line-height: 1.7;
+        }
+
+        .risk strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            .allocation {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .card {
+                padding: 18px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== 头部 ===== -->
+        <div class="header">
+            <div class="badge">📌 客户专属 · 方案建议</div>
+            <h1>30万年终奖<br />“底仓 + 定投”组合</h1>
+            <div class="sub">客户：小陈 ｜ 年龄：35岁 ｜ 可投金额：30万 ｜ 期限：半年内不用</div>
+            <div class="tagline">
+                <span>✅ 能接受波动</span>
+                <span>✅ 已有货基+权益经验</span>
+                <span>⏳ 124天固收打底</span>
+            </div>
+        </div>
+
+        <!-- ===== 方案概览 ===== -->
+        <div class="card">
+            <div class="card-title"><span class="emoji">🧩</span> 组合策略</div>
+            <div class="card-desc">
+                核心思路：<strong>“固收打底 + 权益定投”</strong>。既不让30万在活期里贬值，也不用一次性全部投入权益市场承受过大波动。
+            </div>
+
+            <div class="allocation">
+                <div class="allocation-item">
+                    <div class="label">🏦 底仓（固收类）</div>
+                    <div class="amount">25<span>万</span></div>
+                    <div class="note">约 83% ｜ 智选时令臻选 124 天</div>
+                </div>
+                <div class="allocation-item orange">
+                    <div class="label">📈 定投（权益类）</div>
+                    <div class="amount">5<span>万</span></div>
+                    <div class="note">约 17% ｜ 南方中证 A500ETF 联接</div>
+                </div>
+            </div>
+
+            <div style="font-size:13px;color:#64748b;margin-top:6px;">
+                ⚡ 定投节奏建议：每周或每两周定投，约 3–6 个月完成建仓
+            </div>
+        </div>
+
+        <!-- ===== 产品一：固收底仓 ===== -->
+        <div class="card">
+            <div class="card-title"><span class="emoji">🛡️</span> 底仓产品</div>
+
+            <div class="product">
+                <div class="product-name">
+                    广州银行红棉理财 · 智选系列时令臻选
+                    <span class="tag">固定收益类</span>
+                    <span class="tag green-tag">二级 · 中低风险</span>
+                </div>
+                <div class="product-meta">
+                    <span>📅 期限：约 124 天</span>
+                    <span>🔒 封闭式净值型</span>
+                    <span>🏦 发行机构：广州银行</span>
+                </div>
+                <div class="product-desc">
+                    本产品为固定收益类理财产品，风险等级为二级（中低）[reference:5][reference:6]。运作模式为封闭式净值型，适合作为<strong>安全垫资产</strong>，在半年内提供相对稳定的收益预期。
+                </div>
+                <div class="highlight-box">
+                    <span class="label">💡 配置逻辑</span>
+                    25万底仓锁定124天，既保证资金在半年内不闲置，又为后续权益投资提供<strong>安全垫</strong>。到期后可根据市场情况决定续作或加仓权益。
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 产品二：权益定投 ===== -->
+        <div class="card">
+            <div class="card-title"><span class="emoji">📊</span> 定投标的</div>
+
+            <div class="product">
+                <div class="product-name">
+                    南方中证 A500ETF 联接 A
+                    <span class="tag">指数型-股票</span>
+                    <span class="tag green-tag">中风险</span>
+                </div>
+                <div class="product-meta">
+                    <span>📋 代码：022434</span>
+                    <span>📅 成立：2024-11-12</span>
+                    <span>📈 规模：41.75 亿</span>
+                    <span>👤 基金经理：朱恒红</span>
+                </div>
+                <div class="product-desc">
+                    本基金通过投资于目标ETF，紧密跟踪<strong>中证A500指数</strong>表现[reference:7]。中证A500覆盖35个中证二级行业、30个申万一级行业，汇聚A股核心资产，兼顾行业均衡与新质生产力代表[reference:8]。
+                    <br /><br />
+                    业绩比较基准：<strong>中证A500指数收益率 × 95% + 银行活期存款利率（税后）× 5%</strong>[reference:9]。
+                </div>
+                <div class="highlight-box">
+                    <span class="label">📈 历史表现（截至近期）</span>
+                    成立以来收益 <strong>+26.58%</strong> ｜ 今年以来 <strong>+4.05%</strong> ｜ 近1年 <strong>+24.69%</strong>[reference:10]<br />
+                    最大回撤 11.28% ｜ 历史任意时点买入持有满1年，盈利概率 <strong>100%</strong>[reference:11]
+                </div>
+                <div style="font-size:13px;color:#64748b;margin-top:10px;background:#f8fafc;padding:10px 14px;border-radius:8px;">
+                    💰 定投门槛：最低 10 元起 ｜ 管理费 0.15%/年 ｜ 托管费 0.05%/年[reference:12]
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 备选方案 ===== -->
+        <div class="card">
+            <div class="card-title"><span class="emoji">🚀</span> 备选 · 更进取的选择</div>
+            <div class="card-desc">
+                如果小陈希望更偏<strong>主动量化、主题更鲜明</strong>，可了解以下产品作为定投的补充或替代：
+            </div>
+
+            <div class="alt-box">
+                <div class="title">📌 国金量化多策略 C</div>
+                <div class="content">
+                    <strong>基金代码：</strong><span class="code">017874</span><br />
+                    <strong>基金类型：</strong>混合型 ｜ <strong>风险等级：</strong>中高风险（R4）[reference:13]<br />
+                    <strong>业绩比较基准：</strong>80% × 沪深300指数收益率 + 20% × 中证全债指数收益率[reference:14]<br /><br />
+                    <strong>📈 历史表现：</strong>成立以来 <strong>+54.97%</strong> ｜ 今年以来 <strong>+15.33%</strong> ｜ 近1年 <strong>+37.70%</strong>[reference:15]<br />
+                    <strong>基金经理：</strong>马芳、姚加红[reference:16]<br /><br />
+                    ⚠️ 该基金采用量化模型选股，<strong>波动大于A500联接</strong>，适合能承受更高波动的客户作为<strong>卫星仓位</strong>配置。
+                </div>
+            </div>
+
+            <div style="font-size:13px;color:#64748b;margin-top:10px;padding:8px 0 0;border-top:1px solid #f1f5f9;">
+                💡 建议：若选择国金量化多策略C，可考虑从5万定投额度中<strong>拆分一部分</strong>（如2–3万）进行配置，其余仍以A500联接为主，保持组合均衡。
+            </div>
+        </div>
+
+        <!-- ===== 风险提示 ===== -->
+        <div class="card">
+            <div class="card-title"><span class="emoji">⚠️</span> 重要风险提示</div>
+            <div class="risk">
+                <strong>投资有风险，入市需谨慎</strong>
+                1. 理财产品业绩比较基准<strong>不代表实际收益</strong>，不构成对收益的承诺[reference:17]。<br />
+                2. 基金过往业绩<strong>不代表未来表现</strong>，基金管理人管理的其他产品业绩不构成对本基金未来收益的保证[reference:18]。<br />
+                3. 本组合中权益类资产（A500联接/国金量化多策略C）会随市场波动，<strong>可能出现本金亏损</strong>。<br />
+                4. 具体产品详情请以<strong>产品合同、招募说明书</strong>等法律文件为准。<br />
+                5. 建议根据自身风险承受能力，<strong>合理配置</strong>，必要时咨询专业投资顾问。
+            </div>
+        </div>
+
+        <!-- ===== 下一步 ===== -->
+        <div class="card" style="background:#f0fdf4;border-color:#86efac;">
+            <div class="card-title" style="color:#065f46;"><span class="emoji">📞</span> 下一步行动</div>
+            <div style="font-size:15px;color:#065f46;line-height:1.8;">
+                ✅ 与小陈确认：偏好<strong>“稳中求进”</strong>还是<strong>“更进取”</strong>方向？<br />
+                ✅ 确定后，协助完成<strong>理财产品认购 + 基金定投签约</strong><br />
+                ✅ 定期（每月/每季度）<strong>回顾组合表现</strong>，根据市场变化动态调整
+            </div>
+        </div>
+
+        <!-- ===== 底部 ===== -->
+        <div class="footer">
+            本页面仅供参考，不构成投资建议。<br />
+            具体产品信息以官方公告及法律文件为准。<br />
+            市场有风险，投资需谨慎。
+        </div>
+
+    </div>
+</body>
+</html>
